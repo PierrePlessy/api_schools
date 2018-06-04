@@ -1,6 +1,7 @@
 class Api::ApiController < ApplicationController
-
+  protect_from_forgery with: :null_session
   before_action :require_login!
+  layout false
 
   def require_login!
     if authentication_success?
