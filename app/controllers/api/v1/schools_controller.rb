@@ -14,6 +14,9 @@ class Api::V1::SchoolsController < Api::ApiController
     @school = School.find(params[:id])
   end
 
+  # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
+  api :POST, '/v1/schools', 'Create a school'
+  error code: 422
   def create
     @school = School.create(school_params)
 
@@ -24,10 +27,13 @@ class Api::V1::SchoolsController < Api::ApiController
     end
   end
 
+  # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
+  api :PATCH, '/v1/schools/:id', 'Update a school'
+  api :PUT, '/v1/schools/:id', 'Update a school'
   def update
     # params.permit!
     @school = School.update(params[:id], school_params)
-    raise @school.inspect
+
     if @school.errors.any?
       render json: {success: false, errors: @school.errors.messages}.to_json, status: 422
     else
@@ -35,6 +41,9 @@ class Api::V1::SchoolsController < Api::ApiController
     end
   end
 
+  # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
+  api :DELETE, '/v1/schools/:id', 'Destroy a school'
+  error code: 422
   def destroy
     school = School.find_by_id(params[:id])
 

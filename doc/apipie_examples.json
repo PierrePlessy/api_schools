@@ -1,4 +1,88 @@
 {
+  "schools#create": [
+    {
+      "verb": "POST",
+      "path": "/api/v1/schools",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "school[name]=new+school",
+      "response_data": {
+        "school": {
+          "id": 980190963,
+          "created_at": "2018-06-04T15:16:55.658Z",
+          "updated_at": "2018-06-04T15:16:55.658Z",
+          "name": "new school",
+          "address": null,
+          "zip_code": null,
+          "city": null,
+          "openings": null,
+          "phone": null,
+          "email": null,
+          "nb_student": null,
+          "status": null,
+          "latitude": 0.0,
+          "longitude": 0.0
+        }
+      },
+      "code": 201,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/schools",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "school[name]=",
+      "response_data": {
+        "success": false,
+        "errors": {
+          "name": [
+            "can't be blank"
+          ]
+        }
+      },
+      "code": 422,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "schools#destroy": [
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/schools/-1",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "success": false
+      },
+      "code": 422,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/schools/1",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "success": true
+      },
+      "code": 200,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
   "schools#index": [
     {
       "verb": "GET",
@@ -9,9 +93,13 @@
       "query": null,
       "request_data": null,
       "response_data": {
-        "success": true
+        "errors": [
+          {
+            "detail": "Access Denie"
+          }
+        ]
       },
-      "code": 200,
+      "code": 401,
       "show_in_doc": 1,
       "recorded": true
     },
@@ -43,14 +131,71 @@
       "query": null,
       "request_data": null,
       "response_data": {
-        "errors": [
+        "schools": [
           {
-            "detail": "Access Denie"
+            "id": 2,
+            "name": "private school",
+            "address": "25 rue foch",
+            "zip_code": "69006",
+            "city": "Lyon",
+            "openings": "Lyon",
+            "phone": "0620123467",
+            "email": "email@domain.com",
+            "nb_student": 42,
+            "status": "private",
+            "latitude": 45.76543,
+            "longitude": 45.8765
+          },
+          {
+            "id": 1,
+            "name": "public school",
+            "address": "25 rue foch",
+            "zip_code": "69006",
+            "city": "Lyon",
+            "openings": "Lyon",
+            "phone": "0620123467",
+            "email": "email@domain.com",
+            "nb_student": 42,
+            "status": "public",
+            "latitude": 45.76543,
+            "longitude": 45.8765
           }
         ]
       },
-      "code": 401,
+      "code": 200,
       "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "schools#update": [
+    {
+      "verb": "PUT",
+      "path": "/api/v1/schools/1",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "school[name]=new+name",
+      "response_data": {
+        "school": {
+          "id": 1,
+          "created_at": "2018-06-04T15:16:55.435Z",
+          "updated_at": "2018-06-04T15:16:55.645Z",
+          "name": "new name",
+          "address": "25 rue foch",
+          "zip_code": "69006",
+          "city": "Lyon",
+          "openings": "Lyon",
+          "phone": "0620123467",
+          "email": "email@domain.com",
+          "nb_student": 42,
+          "status": "public",
+          "latitude": 45.76543,
+          "longitude": 45.8765
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -65,7 +210,7 @@
       "request_data": "email=user_2%40domain.com&password=password123",
       "response_data": {
         "success": true,
-        "auth_token": "0b97ce8c369e4b782003697808c90a6b"
+        "auth_token": "589491bfef9db7cdd85f39a28cd39353"
       },
       "code": 200,
       "show_in_doc": 1,

@@ -25,14 +25,14 @@ feature "Schools" do
     end
 
     # focus
-    it "return only private schools" do
-      get api_v1_schools_path,
-        {status: 'private'},
-        {'HTTP_AUTHORIZATION' => 'valid_token'}
-
-      assert_equal 1, json_response['schools'].length
-      assert_equal "private school", json_response['schools'].first['name']
-    end
+    # it "return only private schools" do
+    #   get api_v1_schools_path,
+    #     {status: 'private'},
+    #     {'HTTP_AUTHORIZATION' => 'valid_token'}
+    #
+    #   assert_equal 1, json_response['schools'].length
+    #   assert_equal "private school", json_response['schools'].first['name']
+    # end
   end
 
   describe "#create" do
