@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   apipie
-  namespace :api do
+  namespace :api, :defaults => { :format => :json } do
       namespace :v1 do
         devise_for :users
         resources :schools

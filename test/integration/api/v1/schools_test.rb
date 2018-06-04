@@ -20,6 +20,7 @@ feature "Schools" do
       get api_v1_schools_path, nil, {'HTTP_AUTHORIZATION' => 'valid_token'}
 
       assert_equal 200, last_response.status
+      assert_equal "hello", json_response['message']
     end
 
   end
