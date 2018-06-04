@@ -50,7 +50,7 @@ feature "Schools" do
     end
 
     # focus
-    it "doesn't creaet a new school when no name given" do
+    it "doesn't create a new school when no name given" do
       assert_no_difference "School.all.count" do
         post api_v1_schools_path, {school: {
             name: ""
@@ -61,6 +61,33 @@ feature "Schools" do
       end
     end
 
+  end
+
+  describe "#update" do
+    it "return 200 when school is successfully update" do
+      put api_v1_school_path(1),
+        {school: {name: "new name"}},
+        {'HTTP_AUTHORIZATION' => 'valid_token'}
+
+      assert_equal 200, last_response.status
+      assert_equal "new name", json_response['school']['name']
+    end
+
+  end
+
+  describe "#destroy" do
+
+    it "return 201 when school is successfully delete" do
+      delete api_v1_school_path(1), nil, {'HTTP_AUTHORIZATION' => 'valid_token'}
+
+      assert_equal 200, last_response.status
+    end
+
+    it "doesn't delete a school with not correctly id" do
+      delete api_v1_school_path(-1), nil, {'HTTP_AUTHORIZATION' => 'valid_token'}
+
+      assert_equal 422, last_response.status
+    end
   end
 
 end

@@ -24,6 +24,27 @@ class Api::V1::SchoolsController < Api::ApiController
     end
   end
 
+  def update
+    # params.permit!
+    @school = School.update(params[:id], school_params)
+    raise @school.inspect
+    if @school.errors.any?
+      render json: {success: false, errors: @school.errors.messages}.to_json, status: 422
+    else
+      render template: 'api/v1/schools/show', status: 200
+    end
+  end
+
+  def destroy
+    school = School.find_by_id(params[:id])
+
+    if !school.blank? && school.destroy
+      render json: {success: true}, status: 200
+    else
+      render json: {success: false}, status:422
+    end
+  end
+
   private
   def school_params
     params.require(:school).permit(

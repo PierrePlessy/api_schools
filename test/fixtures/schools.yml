@@ -5,6 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  id: 1
   name: "public school"
   address: "25 rue foch"
   zip_code: "69006"
@@ -18,6 +19,7 @@ one:
   longitude: 45.8765
 
 two:
+  id: 2
   name: "private school"
   address: "25 rue foch"
   zip_code: "69006"
