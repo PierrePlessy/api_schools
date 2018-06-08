@@ -19,6 +19,7 @@ class School < ApplicationRecord
   def format_lat_lng
     self.latitude = latitude.to_f
     self.longitude = longitude.to_f
+    self.nb_student = nb_student.to_i
   end
 
 end

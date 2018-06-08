@@ -1,15 +1,14 @@
 class Api::V1::SchoolsController < Api::ApiController
 
-  # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
   api :GET, '/v1/schools', 'List schools'
+  param :status, String, :desc => "Must be private or public"
   error code: 401
   def index
-    # render json: {success: true}
-    # @message = "hello"
-    # raise School.fist.inspect
     @schools = School.filter(params)
   end
 
+  # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
+  api :GET, '/v1/schools/:id', 'Show a school'
   def show
     @school = School.find(params[:id])
   end
@@ -43,7 +42,6 @@ class Api::V1::SchoolsController < Api::ApiController
 
   # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
   api :DELETE, '/v1/schools/:id', 'Destroy a school'
-  error code: 422
   def destroy
     school = School.find_by_id(params[:id])
 

@@ -25,14 +25,23 @@ feature "Schools" do
     end
 
     # focus
-    # it "return only private schools" do
-    #   get api_v1_schools_path,
-    #     {status: 'private'},
-    #     {'HTTP_AUTHORIZATION' => 'valid_token'}
-    #
-    #   assert_equal 1, json_response['schools'].length
-    #   assert_equal "private school", json_response['schools'].first['name']
-    # end
+    it "return only private schools" do
+      get api_v1_schools_path,
+        {status: 'private'},
+        {'HTTP_AUTHORIZATION' => 'valid_token'}
+
+      assert_equal 1, json_response['schools'].length
+      assert_equal "private school", json_response['schools'].first['name']
+    end
+  end
+
+  describe "#show" do
+    it "show a school" do
+      get api_v1_school_path(1), nil, {'HTTP_AUTHORIZATION' => 'valid_token'}
+
+      assert_equal 200, last_response.status
+      assert_equal "public school", json_response['school']['name']
+    end
   end
 
   describe "#create" do
@@ -81,12 +90,6 @@ feature "Schools" do
       delete api_v1_school_path(1), nil, {'HTTP_AUTHORIZATION' => 'valid_token'}
 
       assert_equal 200, last_response.status
-    end
-
-    it "doesn't delete a school with not correctly id" do
-      delete api_v1_school_path(-1), nil, {'HTTP_AUTHORIZATION' => 'valid_token'}
-
-      assert_equal 422, last_response.status
     end
   end
 
